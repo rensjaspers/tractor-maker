@@ -1,7 +1,7 @@
 import { ExhaustPipe } from './ExhaustPipe';
 const CORNER_R = 6;
 
-type ExhaustPosition = 'front' | 'back';
+type ExhaustPosition = 'front' | 'roof' | 'back';
 
 export class Body {
   x: number;
@@ -46,16 +46,25 @@ export class Body {
   }
 
   updateExhaust(pos: ExhaustPosition) {
-    if (pos === 'front') {
-      this.exhaust.x = this.x + this.w - 20;
-      this.exhaust.y = this.hoodHeight - 5;
-      this.exhaust.w = 10;
-      this.exhaust.h = 30;
-    } else {
-      this.exhaust.x = this.x + this.cabinWidth - 20;
-      this.exhaust.y = this.h;
-      this.exhaust.w = 10;
-      this.exhaust.h = 30;
+    switch(pos) {
+      case 'front':
+        this.exhaust.x = this.x + this.w - 20;
+        this.exhaust.y = this.hoodHeight - 5;
+        this.exhaust.w = 10;
+        this.exhaust.h = 30;
+        break;
+      case 'roof':
+        this.exhaust.x = this.x + this.cabinWidth - 20;
+        this.exhaust.y = this.h;
+        this.exhaust.w = 10;
+        this.exhaust.h = 30;
+        break;
+      case 'back':
+        this.exhaust.x = this.x - 10;
+        this.exhaust.y = 10;
+        this.exhaust.w = 20;
+        this.exhaust.h = 10;
+        break;
     }
   }
 
@@ -95,7 +104,11 @@ export class Body {
     ctx.fill();
 
     // Draw hood
-    ctx.globalCompositeOperation = 'destination-over';
+    ctx.fillStyle = "rgba(0,0,0,0.1)";
+    roundRect(ctx, this.w / 2 + 5, -this.hoodHeight + 5, this.w / 2 - 10, this.hoodHeight - 10, CORNER_R);
+    ctx.fill();
+
+    ctx.fillStyle = this.color;
     roundRect(ctx, 0, -this.hoodHeight, this.w, this.hoodHeight, CORNER_R);
     ctx.fill();
 

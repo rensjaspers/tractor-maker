@@ -45,12 +45,13 @@ export class TractorComponent implements AfterViewInit, OnChanges {
       this.tractor.next(dt);
       this.tractor.draw(ctx);
 
-      if (!this.animated) {
-        return;
-      }
       requestAnimationFrame(frame);
     };
 
-    requestAnimationFrame(frame);
+    if (this.animated) {
+      requestAnimationFrame(frame);
+    } else {
+      this.tractor.draw(ctx);
+    }
   }
 }
