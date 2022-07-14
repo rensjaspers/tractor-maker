@@ -18,9 +18,9 @@
           <ion-content>
             <ion-list>
               <ion-item
+                [button]="true"
                 *ngFor="let tractor of tractorStorageService.tractors"
-                [routerLink]="[]"
-                [queryParams]="tractor.config"
+                (click)="configForm.patchValue(tractor.config); loadModal.dismiss()"
               >
                 <ion-thumbnail slot="start">
                   <app-tractor
