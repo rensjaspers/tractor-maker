@@ -1,20 +1,91 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title> Tractor Maker </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid>
+    <ion-row class="wrap-reverse">
+      <ion-col size="12" size-sm="8">
+        <app-tractor [config]="config$ | async"></app-tractor>
+      </ion-col>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+      <ion-col>
+        <form [formGroup]="configForm">
+          <ion-accordion-group [value]="['wheels']">
+            <ion-accordion value="wheels">
+              <ion-item slot="header">
+                <ion-label>Wheels</ion-label>
+              </ion-item>
+
+              <div slot="content">
+                <ion-item>
+                  <ion-label>Radius</ion-label>
+                  <ion-range min="30" max="100" formControlName="wheelSize">
+                  </ion-range>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Rim size</ion-label>
+                  <ion-range
+                    min="0.4"
+                    max="0.9"
+                    [step]="0.05"
+                    formControlName="rimSize"
+                  >
+                  </ion-range>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Ratio</ion-label>
+                  <ion-range min="1" max="200" formControlName="frontBackRatio">
+                  </ion-range>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Bolts</ion-label>
+                  <ion-range
+                    [snaps]="true"
+                    [ticks]="true"
+                    [min]="4"
+                    [max]="10"
+                    formControlName="bolts"
+                  >
+                  </ion-range>
+                </ion-item>
+              </div>
+            </ion-accordion>
+            <ion-accordion name="chassis">
+              <ion-item slot="header">
+                <ion-label>Chassis</ion-label>
+              </ion-item>
+
+              <div slot="content">
+                <ion-item>
+                  <ion-label>Color</ion-label>
+                  <input type="color" formControlName="color" />
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Cabin width</ion-label>
+                  <ion-range min="20" max="100" formControlName="cabinWidth">
+                  </ion-range>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Hood height</ion-label>
+                  <ion-range min="20" max="100" formControlName="cabinWidth">
+                  </ion-range>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Exhaust</ion-label>
+                  <ion-select formControlName="exhaustLocation">
+                    <ion-select-option value="front">Front</ion-select-option>
+                    <ion-select-option value="back">Back</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+            </ion-accordion>
+          </ion-accordion-group>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
