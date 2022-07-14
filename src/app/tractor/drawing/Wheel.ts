@@ -46,7 +46,9 @@ export class Wheel {
 
   next(dt) {
     this.rot += (SPEED * dt) / this.y / 1000;
-    if (this.rot > Math.PI * 2) this.rot -= Math.PI * 2;
+    if (this.rot > Math.PI * 2) {
+      this.rot -= Math.PI * 2;
+    }
   }
 
   draw(ctx) {
@@ -68,7 +70,6 @@ export class Wheel {
     ctx.arc(0, 0, rIn, 0, Math.PI * 2, true);
     ctx.fillStyle = 'grey';
     ctx.fill();
-    self;
 
     // bolts
     const boltPos =
