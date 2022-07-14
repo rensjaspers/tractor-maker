@@ -5,9 +5,19 @@
       <ion-button (click)="configForm.reset(defaultConfig)">
         Reset
       </ion-button>
-      <ion-button color="primary">
+      <ion-button color="primary" (click)="saveModal.present()">
         Save
       </ion-button>
+      <ion-modal #saveModal>
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Save tractor</ion-title>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content></ion-content>
+        </ng-template>
+      </ion-modal>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
