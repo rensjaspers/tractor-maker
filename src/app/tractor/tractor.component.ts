@@ -6,6 +6,7 @@ import {
   OnChanges,
   ViewChild,
 } from '@angular/core';
+import { DEFAULT_TRACTOR_CONFIG } from './DEFAULT_TRACTOR_CONFIG';
 import { Tractor } from './drawing/Tractor';
 import { TractorConfig } from './tractor-config';
 
@@ -19,34 +20,21 @@ export class TractorComponent implements AfterViewInit, OnChanges {
   @ViewChild('targetCanvas') targetCanvas: ElementRef<HTMLCanvasElement>;
 
   tractor: Tractor;
-  private readonly defaultConfig: TractorConfig = {
-    wheelSize: 80,
-    rimSize: 0.5,
-    color: '#FF0000',
-    cabinWidth: 50,
-    hoodHeight: 50,
-    width: 300,
-    height: 200,
-    exhaustLocation: 'front',
-    frontBackRatio: 50,
-    bolts: 4,
-  };
+  private readonly defaultConfig  = DEFAULT_TRACTOR_CONFIG;
 
   constructor() {
     this.tractor = new Tractor(200, 500);
+    this.tractor.update(this.defaultConfig);
   }
 
   ngOnChanges(): void {
     this.tractor.update(this.config);
-    console.log(this.config);
   }
 
   ngAfterViewInit() {
     this.targetCanvas.nativeElement.width = 800;
     this.targetCanvas.nativeElement.height = 600;
     const ctx = this.targetCanvas.nativeElement.getContext('2d');
-
-    this.tractor.update(this.defaultConfig);
 
     let t = 0;
     const frame = (t2) => {

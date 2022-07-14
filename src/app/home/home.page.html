@@ -1,6 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title> Tractor Maker </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="configForm.reset(defaultConfig)">
+        Reset
+      </ion-button>
+      <ion-button color="primary">
+        Save
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -71,7 +79,17 @@
                 </ion-item>
                 <ion-item>
                   <ion-label>Hood height</ion-label>
-                  <ion-range min="20" max="100" formControlName="cabinWidth">
+                  <ion-range min="20" max="100" formControlName="hoodHeight">
+                  </ion-range>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Height</ion-label>
+                  <ion-range min="100" max="400" formControlName="height">
+                  </ion-range>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Length</ion-label>
+                  <ion-range min="100" max="500" formControlName="width">
                   </ion-range>
                 </ion-item>
                 <ion-item>

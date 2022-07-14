@@ -89,6 +89,7 @@ export class Body {
       CORNER_R
     );
     ctx.fill();
+
     // Roof
     roundRect(ctx, 0, -this.h, this.cabinWidth, thickness, CORNER_R);
     ctx.fill();
@@ -97,6 +98,15 @@ export class Body {
     ctx.globalCompositeOperation = 'destination-over';
     roundRect(ctx, 0, -this.hoodHeight, this.w, this.hoodHeight, CORNER_R);
     ctx.fill();
+
+    // Steering wheel
+    ctx.beginPath();
+    ctx.moveTo(this.cabinWidth - 3 * thickness, -this.hoodHeight);
+    ctx.lineTo(this.cabinWidth - 3 * thickness - 10, -this.hoodHeight - 10);
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = "black";
+    ctx.closePath();
+    ctx.stroke();
 
     this.exhaust.draw(ctx);
 

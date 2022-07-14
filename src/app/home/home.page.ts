@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, startWith, tap } from 'rxjs/operators';
+import { DEFAULT_TRACTOR_CONFIG } from '../tractor/DEFAULT_TRACTOR_CONFIG';
 import { TractorConfig } from '../tractor/tractor-config';
 
 @Component({
@@ -11,16 +12,16 @@ import { TractorConfig } from '../tractor/tractor-config';
 })
 export class HomePage implements OnInit {
   configForm = new FormGroup({
-    wheelSize: new FormControl(80),
-    rimSize: new FormControl(0.5),
-    color: new FormControl('#FF0000'),
-    cabinWidth: new FormControl(50),
-    hoodHeight: new FormControl(50),
-    width: new FormControl(300),
-    height: new FormControl(200),
-    exhaustLocation: new FormControl<'front' | 'back'>('front'),
-    frontBackRatio: new FormControl(50),
-    bolts: new FormControl(4),
+    wheelSize: new FormControl(),
+    rimSize: new FormControl(),
+    color: new FormControl(),
+    cabinWidth: new FormControl(),
+    hoodHeight: new FormControl(),
+    width: new FormControl(),
+    height: new FormControl(),
+    exhaustLocation: new FormControl<'front' | 'back' | null>(null),
+    frontBackRatio: new FormControl(),
+    bolts: new FormControl(null),
   });
   config$ = this.configForm.valueChanges.pipe(
     startWith(''),
@@ -31,8 +32,11 @@ export class HomePage implements OnInit {
       });
     })
   );
+  defaultConfig: TractorConfig = DEFAULT_TRACTOR_CONFIG;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute) {
+    this.configForm.patchValue(this.defaultConfig);
+  }
 
   ngOnInit(): void {
     this.configForm.patchValue(this.route.snapshot.queryParams);
