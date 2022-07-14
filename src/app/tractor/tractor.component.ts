@@ -17,10 +17,11 @@ import { TractorConfig } from './tractor-config';
 })
 export class TractorComponent implements AfterViewInit, OnChanges {
   @Input() config: TractorConfig;
+  @Input() animated = true;
   @ViewChild('targetCanvas') targetCanvas: ElementRef<HTMLCanvasElement>;
 
   tractor: Tractor;
-  private readonly defaultConfig  = DEFAULT_TRACTOR_CONFIG;
+  private readonly defaultConfig = DEFAULT_TRACTOR_CONFIG;
 
   constructor() {
     this.tractor = new Tractor(200, 500);
@@ -44,6 +45,9 @@ export class TractorComponent implements AfterViewInit, OnChanges {
       this.tractor.next(dt);
       this.tractor.draw(ctx);
 
+      if (!this.animated) {
+        return;
+      }
       requestAnimationFrame(frame);
     };
 

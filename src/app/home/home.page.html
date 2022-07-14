@@ -2,9 +2,7 @@
   <ion-toolbar>
     <ion-title> Tractor Maker </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="configForm.reset(defaultConfig)">
-        Reset
-      </ion-button>
+      <ion-button (click)="configForm.reset(defaultConfig)"> Reset </ion-button>
       <ion-button color="primary" (click)="saveModal.present()">
         Save
       </ion-button>
@@ -15,7 +13,12 @@
               <ion-title>Save tractor</ion-title>
             </ion-toolbar>
           </ion-header>
-          <ion-content></ion-content>
+          <ion-content>
+            <app-tractor
+              [config]="config$ | async"
+              [animated]="false"
+            ></app-tractor>
+          </ion-content>
         </ng-template>
       </ion-modal>
     </ion-buttons>
