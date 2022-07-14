@@ -2,6 +2,42 @@
   <ion-toolbar>
     <ion-title> Tractor Maker </ion-title>
     <ion-buttons slot="end">
+      <ion-button (click)="loadModal.present()">Load</ion-button>
+      <ion-modal #loadModal>
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button (click)="loadModal.dismiss()">
+                  <ion-icon name="close"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+              <ion-title> Load Tractor </ion-title>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content>
+            <ion-list>
+              <ion-item
+                *ngFor="let tractor of tractorStorageService.tractors"
+                [routerLink]="[]"
+                [queryParams]="tractor.config"
+              >
+                <ion-thumbnail slot="start">
+                  <app-tractor
+                    [config]="tractor.config"
+                    [animated]="false"
+                  ></app-tractor>
+                </ion-thumbnail>
+
+                <ion-label
+                  ><h2>{{tractor.name}}</h2>
+                  <p>{{tractor.createdAt | date }}</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
       <ion-button (click)="configForm.reset(defaultConfig)"> Reset </ion-button>
       <ion-button color="primary" (click)="saveModal.present()">
         Save
@@ -10,10 +46,27 @@
         <ng-template>
           <ion-header>
             <ion-toolbar>
-              <ion-title>Save tractor</ion-title>
+              <ion-buttons slot="end">
+                <ion-button
+                  #saveButton
+                  color="primary"
+                  (click)="saveCurrentTractor(tractorName.value); saveModal.dismiss();"
+                >
+                  Save
+                </ion-button>
+              </ion-buttons>
             </ion-toolbar>
           </ion-header>
           <ion-content>
+            <ion-item>
+              <ion-label position="stacked">Choose a name</ion-label>
+              <ion-input
+                #tractorName
+                placeholder="My Tractor"
+                value="My Tractor"
+              ></ion-input>
+            </ion-item>
+
             <app-tractor
               [config]="config$ | async"
               [animated]="false"
@@ -26,7 +79,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid>
+  <ion-grid class="ion-no-padding">
     <ion-row class="wrap-reverse">
       <ion-col size="12" size-sm="8">
         <app-tractor [config]="config$ | async"></app-tractor>

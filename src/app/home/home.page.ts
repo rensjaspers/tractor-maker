@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, startWith, tap } from 'rxjs/operators';
+import { TractorStorageService } from '../services/tractor-storage.service';
 import { DEFAULT_TRACTOR_CONFIG } from '../tractor/DEFAULT_TRACTOR_CONFIG';
 import { TractorConfig } from '../tractor/tractor-config';
 
@@ -27,18 +28,31 @@ export class HomePage implements OnInit {
     startWith(''),
     map(() => this.configForm.value),
     tap((config) => {
+      this.configSnapshot = config as TractorConfig;
       this.router.navigate([], {
         queryParams: config,
       });
     })
   );
   defaultConfig: TractorConfig = DEFAULT_TRACTOR_CONFIG;
+  configSnapshot: TractorConfig;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    public tractorStorageService: TractorStorageService
+  ) {
     this.configForm.patchValue(this.defaultConfig);
   }
 
   ngOnInit(): void {
     this.configForm.patchValue(this.route.snapshot.queryParams);
+  }
+
+  saveCurrentTractor(name: string) {
+    this.tractorStorageService.saveTractor({
+      name,
+      config: this.configSnapshot,
+    });
   }
 }
