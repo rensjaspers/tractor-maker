@@ -104,7 +104,11 @@ export class Body {
     ctx.fill();
 
     // Draw hood
-    ctx.globalCompositeOperation = 'destination-over';
+    ctx.fillStyle = "rgba(0,0,0,0.1)";
+    roundRect(ctx, this.w / 2 + 5, -this.hoodHeight + 5, this.w / 2 - 10, this.hoodHeight - 10, CORNER_R);
+    ctx.fill();
+
+    ctx.fillStyle = this.color;
     roundRect(ctx, 0, -this.hoodHeight, this.w, this.hoodHeight, CORNER_R);
     ctx.fill();
 
