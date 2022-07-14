@@ -63,7 +63,7 @@ export class Body {
     this.exhaust.next(dt);
   }
 
-  draw(ctx) {
+  draw(ctx: CanvasRenderingContext2D) {
     ctx.save();
     ctx.translate(this.x, -this.y);
     ctx.fillStyle = this.color;
@@ -71,10 +71,30 @@ export class Body {
     // Draw behind everything
     ctx.globalCompositeOperation = 'destination-over';
 
-    // Draw
-    roundRect(ctx, 0, -this.h, this.cabinWidth, this.h, CORNER_R);
+    // Draw cabin
+    const thickness = 10;
+    // Left
+    roundRect(ctx, 0, -this.h, thickness, this.h, CORNER_R);
+    ctx.fill();
+    // Center
+    roundRect(ctx, (this.cabinWidth - thickness) / 2 - thickness, -this.h, thickness, this.h, CORNER_R);
+    ctx.fill();
+    // Right
+    roundRect(
+      ctx,
+      this.cabinWidth - 3 * thickness,
+      -this.h,
+      thickness,
+      this.h,
+      CORNER_R
+    );
+    ctx.fill();
+    // Roof
+    roundRect(ctx, 0, -this.h, this.cabinWidth, thickness, CORNER_R);
     ctx.fill();
 
+    // Draw hood
+    ctx.globalCompositeOperation = 'destination-over';
     roundRect(ctx, 0, -this.hoodHeight, this.w, this.hoodHeight, CORNER_R);
     ctx.fill();
 

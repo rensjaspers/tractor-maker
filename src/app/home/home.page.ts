@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, startWith, tap } from 'rxjs/operators';
+import { TractorConfig } from '../tractor/tractor-config';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,8 @@ export class HomePage implements OnInit {
     color: new FormControl('#FF0000'),
     cabinWidth: new FormControl(50),
     hoodHeight: new FormControl(50),
+    width: new FormControl(300),
+    height: new FormControl(200),
     exhaustLocation: new FormControl<'front' | 'back'>('front'),
     frontBackRatio: new FormControl(50),
     bolts: new FormControl(4),

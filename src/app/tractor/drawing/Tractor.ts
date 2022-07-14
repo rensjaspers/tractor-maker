@@ -28,21 +28,25 @@ export class Tractor {
     this.parts = [this.backWheel, this.frontWheel, this.body];
   }
 
+  // TODO: ensure config from URL does not pass strings to this method
   update(config: TractorConfig) {
     this.body.color = config.color;
-    this.backWheel.y = config.wheelSize;
-    this.frontWheel.y = (config.wheelSize * config.frontBackRatio) / 100;
+    this.backWheel.y = +config.wheelSize;
+    this.frontWheel.y = (+config.wheelSize * +config.frontBackRatio) / 100;
 
+    this.body.w = +config.width;
+    this.body.h = +config.height;
     this.body.y = Math.min(this.backWheel.y, this.frontWheel.y) - 10;
-    // this.body.w = config.width;
-    // this.body.h = config.height;
-    this.body.wRatio = config.cabinWidth / 100;
-    this.body.hRatio = config.hoodHeight / 100;
+    this.body.wRatio = +config.cabinWidth / 100;
+    this.body.hRatio = +config.hoodHeight / 100;
 
     [this.frontWheel, this.backWheel].forEach((wheel) => {
-      wheel.boltCount = config.bolts;
-      wheel.rimSize = config.rimSize;
+      wheel.boltCount = +config.bolts;
+      wheel.rimSize = +config.rimSize;
     });
+
+    this.frontWheel.x = this.body.x + this.body.w - this.frontWheel.y - 5;
+    this.backWheel.x = this.body.x + this.backWheel.y - 5;
 
     this.body.updateExhaust(config.exhaustLocation);
   }
