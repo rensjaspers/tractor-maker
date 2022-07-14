@@ -55,4 +55,8 @@ export class HomePage implements OnInit {
       config: this.configSnapshot,
     });
   }
+
+  deleteTractor(name: string) {
+    this.tractorStorageService.deleteTractor(name);
+  }
 }

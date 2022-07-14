@@ -2,7 +2,11 @@
   <ion-toolbar>
     <ion-title> Tractor Maker </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="loadModal.present()">Load</ion-button>
+      <ion-button
+        (click)="loadModal.present()"
+        [disabled]="!tractorStorageService.tractors.length"
+        >Load</ion-button
+      >
       <ion-modal #loadModal>
         <ng-template>
           <ion-header>
@@ -33,6 +37,13 @@
                   ><h2>{{tractor.name}}</h2>
                   <p>{{tractor.createdAt | date }}</p>
                 </ion-label>
+                <ion-button
+                  slot="end"
+                  color="danger"
+                  (click)="deleteTractor(tractor.name)"
+                >
+                  <ion-icon name="trash-outline"></ion-icon
+                ></ion-button>
               </ion-item>
             </ion-list>
           </ion-content>

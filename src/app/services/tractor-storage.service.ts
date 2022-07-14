@@ -32,4 +32,8 @@ export class TractorStorageService {
     console.log(item, this.tractors);
     this.tractors = [item, ...this.tractors];
   }
+
+  deleteTractor(name: string) {
+    this.tractors = this.tractors.filter((tractor) => tractor.name !== name);
+  }
 }
