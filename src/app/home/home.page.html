@@ -43,7 +43,7 @@
               <ion-button
                 slot="end"
                 color="danger"
-                (click)="deleteTractor(tractor.createdAt)"
+                (click)="deleteTractor(tractor.createdAt);$event.stopPropagation();"
               >
                 <ion-icon name="trash-outline"></ion-icon
               ></ion-button>
