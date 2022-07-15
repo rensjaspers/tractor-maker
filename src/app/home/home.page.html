@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title> Tractor Maker </ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="configForm.reset(defaultConfig)"> Reset </ion-button>
+    </ion-buttons>
     <ion-buttons slot="end">
       <ion-button
         (click)="loadModal.present()"
@@ -20,36 +23,34 @@
             </ion-toolbar>
           </ion-header>
           <ion-content>
-            <ion-list>
-              <ion-item
-                [button]="true"
-                *ngFor="let tractor of tractorStorageService.tractors"
-                (click)="configForm.patchValue(tractor.config); loadModal.dismiss()"
-              >
-                <ion-thumbnail slot="start">
-                  <app-tractor
-                    [config]="tractor.config"
-                    [animated]="false"
-                  ></app-tractor>
-                </ion-thumbnail>
+            <ion-item
+              [button]="true"
+              *ngFor="let tractor of tractorStorageService.tractors"
+              (click)="configForm.patchValue(tractor.config); loadModal.dismiss()"
+            >
+              <ion-thumbnail slot="start">
+                <app-tractor
+                  style="display: flex; align-items: center; height: 100%"
+                  [config]="tractor.config"
+                  [animated]="false"
+                ></app-tractor>
+              </ion-thumbnail>
 
-                <ion-label
-                  ><h2>{{tractor.name}}</h2>
-                  <p>{{tractor.createdAt | date }}</p>
-                </ion-label>
-                <ion-button
-                  slot="end"
-                  color="danger"
-                  (click)="deleteTractor(tractor.createdAt)"
-                >
-                  <ion-icon name="trash-outline"></ion-icon
-                ></ion-button>
-              </ion-item>
-            </ion-list>
+              <ion-label
+                ><h2>{{tractor.name}}</h2>
+                <p>{{tractor.createdAt | date }}</p>
+              </ion-label>
+              <ion-button
+                slot="end"
+                color="danger"
+                (click)="deleteTractor(tractor.createdAt)"
+              >
+                <ion-icon name="trash-outline"></ion-icon
+              ></ion-button>
+            </ion-item>
           </ion-content>
         </ng-template>
       </ion-modal>
-      <ion-button (click)="configForm.reset(defaultConfig)"> Reset </ion-button>
       <ion-button color="primary" (click)="saveCurrentTractor()">
         Save
       </ion-button>
