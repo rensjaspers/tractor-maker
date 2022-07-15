@@ -5,8 +5,10 @@
       <ion-button (click)="configForm.reset(defaultConfig)">
         <ion-icon
           name="refresh-outline"
+          slot="start"
           style="transform: scaleX(-1)"
         ></ion-icon>
+        <ion-label>Reset</ion-label>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
@@ -14,7 +16,8 @@
         (click)="loadModal.present()"
         [disabled]="!tractorStorageService.tractors.length"
       >
-        <ion-icon name="list-circle-outline"></ion-icon>
+        <ion-icon slot="start" name="list-circle-outline"></ion-icon>
+        <ion-label>My Tractors</ion-label>
       </ion-button>
       <ion-modal #loadModal>
         <ng-template>
@@ -59,7 +62,9 @@
         </ng-template>
       </ion-modal>
       <ion-button color="primary" (click)="saveCurrentTractor()">
-        Save
+        <ion-icon slot="start" name="save-outline"></ion-icon>
+
+        <ion-label>Save</ion-label>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
