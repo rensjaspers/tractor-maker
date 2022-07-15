@@ -33,7 +33,7 @@ export class TractorStorageService {
     this.tractors = [item, ...this.tractors];
   }
 
-  deleteTractor(name: string) {
-    this.tractors = this.tractors.filter((tractor) => tractor.name !== name);
+  deleteTractor(id: number) {
+    this.tractors = this.tractors.filter((tractor) => tractor.createdAt !== id);
   }
 }

@@ -62,7 +62,7 @@ export class HomePage implements OnInit {
     alert('Tractor saved!');
   }
 
-  deleteTractor(name: string) {
-    this.tractorStorageService.deleteTractor(name);
+  deleteTractor(id: number) {
+    this.tractorStorageService.deleteTractor(id);
   }
 }
