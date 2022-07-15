@@ -66,47 +66,11 @@
 
       <ion-col>
         <form [formGroup]="configForm">
-          <ion-accordion-group [value]="['wheels']">
-            <ion-accordion value="wheels">
-              <ion-item slot="header">
-                <ion-label>Wheels</ion-label>
-              </ion-item>
-
-              <div slot="content">
-                <ion-item>
-                  <ion-label>Radius</ion-label>
-                  <ion-range min="30" max="100" formControlName="wheelSize">
-                  </ion-range>
-                </ion-item>
-                <ion-item>
-                  <ion-label>Rim size</ion-label>
-                  <ion-range
-                    min="0.4"
-                    max="0.9"
-                    [step]="0.05"
-                    formControlName="rimSize"
-                  >
-                  </ion-range>
-                </ion-item>
-                <ion-item>
-                  <ion-label>Ratio</ion-label>
-                  <ion-range min="1" max="200" formControlName="frontBackRatio">
-                  </ion-range>
-                </ion-item>
-                <ion-item>
-                  <ion-label>Bolts</ion-label>
-                  <ion-range
-                    [snaps]="true"
-                    [ticks]="true"
-                    [min]="4"
-                    [max]="10"
-                    formControlName="bolts"
-                  >
-                  </ion-range>
-                </ion-item>
-              </div>
-            </ion-accordion>
-            <ion-accordion name="chassis">
+          <ion-accordion-group
+            [multiple]="true"
+            [value]="['chassis', 'wheels']"
+          >
+            <ion-accordion value="chassis">
               <ion-item slot="header">
                 <ion-label>Chassis</ion-label>
               </ion-item>
@@ -144,6 +108,45 @@
                     <ion-select-option value="roof">Roof</ion-select-option>
                     <ion-select-option value="back">Back</ion-select-option>
                   </ion-select>
+                </ion-item>
+              </div>
+            </ion-accordion>
+            <ion-accordion value="wheels">
+              <ion-item slot="header">
+                <ion-label>Wheels</ion-label>
+              </ion-item>
+
+              <div slot="content">
+                <ion-item>
+                  <ion-label>Radius</ion-label>
+                  <ion-range min="30" max="100" formControlName="wheelSize">
+                  </ion-range>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Rim size</ion-label>
+                  <ion-range
+                    min="0.4"
+                    max="0.9"
+                    [step]="0.05"
+                    formControlName="rimSize"
+                  >
+                  </ion-range>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Ratio</ion-label>
+                  <ion-range min="1" max="200" formControlName="frontBackRatio">
+                  </ion-range>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Bolts</ion-label>
+                  <ion-range
+                    [snaps]="true"
+                    [ticks]="true"
+                    [min]="4"
+                    [max]="10"
+                    formControlName="bolts"
+                  >
+                  </ion-range>
                 </ion-item>
               </div>
             </ion-accordion>
