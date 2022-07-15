@@ -80,7 +80,8 @@
         <ion-accordion-group [multiple]="true" [value]="['chassis', 'wheels']">
           <ion-accordion value="chassis">
             <ion-item slot="header">
-              <ion-label>Chassis</ion-label>
+              <fa-icon slot="start" [icon]="icons.car"></fa-icon>
+              <ion-label>Body</ion-label>
             </ion-item>
 
             <div slot="content">
@@ -164,6 +165,7 @@
           </ion-accordion>
           <ion-accordion value="wheels">
             <ion-item slot="header">
+              <fa-icon slot="start" [icon]="icons.circleDot"></fa-icon>
               <ion-label>Wheels</ion-label>
             </ion-item>
 

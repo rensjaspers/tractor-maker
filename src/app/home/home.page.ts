@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import {
+  faCar,
   faCarSide,
   faCircleDot,
   faScaleUnbalanced,
@@ -46,6 +47,7 @@ export class HomePage implements OnInit {
   defaultConfig: TractorConfig = DEFAULT_TRACTOR_CONFIG;
   configSnapshot: TractorConfig;
   icons = {
+    car: faCar,
     carSide: faCarSide,
     circle: faCircle,
     circleDot: faCircleDot,
