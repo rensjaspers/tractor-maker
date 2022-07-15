@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { faCar, faCarSide } from '@fortawesome/free-solid-svg-icons';
 import { map, startWith, tap } from 'rxjs/operators';
 import { TractorStorageService } from '../services/tractor-storage.service';
 import { DEFAULT_TRACTOR_CONFIG } from '../tractor/DEFAULT_TRACTOR_CONFIG';
@@ -36,6 +37,9 @@ export class HomePage implements OnInit {
   );
   defaultConfig: TractorConfig = DEFAULT_TRACTOR_CONFIG;
   configSnapshot: TractorConfig;
+  icons = {
+    carSide: faCarSide,
+  };
 
   constructor(
     private router: Router,

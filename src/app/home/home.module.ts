@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { TractorModule } from '../tractor/tractor.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { TractorModule } from '../tractor/tractor.module';
     HomePageRoutingModule,
     ReactiveFormsModule,
     TractorModule,
+    FontAwesomeModule,
   ],
   declarations: [HomePage],
 })

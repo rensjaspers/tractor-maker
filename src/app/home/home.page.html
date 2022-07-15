@@ -84,23 +84,63 @@
                 </ion-item>
 
                 <ion-item>
-                  <ion-label>Cabin width</ion-label>
+                  <ion-label class="ion-text-wrap">Cabin Width</ion-label>
                   <ion-range min="20" max="100" formControlName="cabinWidth">
+                    <fa-icon
+                      [icon]="icons.carSide"
+                      slot="start"
+                      style="transform: scaleX(0.5)"
+                    ></fa-icon>
+                    <fa-icon
+                      [icon]="icons.carSide"
+                      slot="end"
+                      style="transform: scaleX(2)"
+                    ></fa-icon>
                   </ion-range>
                 </ion-item>
                 <ion-item>
                   <ion-label>Hood height</ion-label>
                   <ion-range min="20" max="100" formControlName="hoodHeight">
+                    <fa-icon
+                      [icon]="icons.carSide"
+                      slot="start"
+                      style="transform: scaleY(0.5)"
+                    ></fa-icon>
+                    <fa-icon
+                      [icon]="icons.carSide"
+                      slot="end"
+                      style="transform: scaleY(2)"
+                    ></fa-icon>
                   </ion-range>
                 </ion-item>
                 <ion-item>
                   <ion-label>Height</ion-label>
                   <ion-range min="100" max="400" formControlName="height">
+                    <fa-icon
+                      [icon]="icons.carSide"
+                      slot="start"
+                      style="transform: scaleY(0.5)"
+                    ></fa-icon>
+                    <fa-icon
+                      [icon]="icons.carSide"
+                      slot="end"
+                      style="transform: scaleY(2)"
+                    ></fa-icon>
                   </ion-range>
                 </ion-item>
                 <ion-item>
                   <ion-label>Length</ion-label>
                   <ion-range min="100" max="500" formControlName="width">
+                    <fa-icon
+                      [icon]="icons.carSide"
+                      slot="start"
+                      style="transform: scaleX(0.5)"
+                    ></fa-icon>
+                    <fa-icon
+                      [icon]="icons.carSide"
+                      slot="end"
+                      style="transform: scaleX(2)"
+                    ></fa-icon>
                   </ion-range>
                 </ion-item>
                 <ion-item>
