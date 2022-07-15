@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TrackByFunction } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
@@ -10,6 +10,7 @@ import {
   faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
 import { map, startWith, tap } from 'rxjs/operators';
+import { StoredTractor } from '../services/stored-tractor.interface';
 import { TractorStorageService } from '../services/tractor-storage.service';
 import { DEFAULT_TRACTOR_CONFIG } from '../tractor/DEFAULT_TRACTOR_CONFIG';
 import { TractorConfig } from '../tractor/tractor-config';
@@ -52,6 +53,8 @@ export class HomePage implements OnInit {
     balanceLeft: faScaleUnbalanced,
     balanceRight: faScaleUnbalancedFlip,
   };
+  trackByTractorId: TrackByFunction<StoredTractor> = (_index, tractor) =>
+    tractor.createdAt;
 
   constructor(
     private router: Router,

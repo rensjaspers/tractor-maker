@@ -34,7 +34,7 @@
           <ion-content>
             <ion-item
               [button]="true"
-              *ngFor="let tractor of tractorStorageService.tractors"
+              *ngFor="let tractor of tractorStorageService.tractors; trackBy: trackByTractorId"
               (click)="configForm.patchValue(tractor.config); loadModal.dismiss()"
             >
               <ion-thumbnail slot="start">

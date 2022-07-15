@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TractorConfig } from '../tractor/tractor-config';
-
-interface StoredTractor {
-  name: string;
-  config: TractorConfig;
-  createdAt: number;
-}
+import { StoredTractor } from './stored-tractor.interface';
 
 @Injectable({
   providedIn: 'root',
