@@ -7,6 +7,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { TractorModule } from '../tractor/tractor.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AngularSplitModule } from 'angular-split';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ReactiveFormsModule,
     TractorModule,
     FontAwesomeModule,
+    AngularSplitModule,
   ],
   declarations: [HomePage],
 })
