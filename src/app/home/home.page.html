@@ -2,14 +2,20 @@
   <ion-toolbar>
     <ion-title> Tractor Maker </ion-title>
     <ion-buttons slot="start">
-      <ion-button (click)="configForm.reset(defaultConfig)"> Reset </ion-button>
+      <ion-button (click)="configForm.reset(defaultConfig)">
+        <ion-icon
+          name="refresh-outline"
+          style="transform: scaleX(-1)"
+        ></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button
         (click)="loadModal.present()"
         [disabled]="!tractorStorageService.tractors.length"
-        >Load</ion-button
       >
+        <ion-icon name="list-circle-outline"></ion-icon>
+      </ion-button>
       <ion-modal #loadModal>
         <ng-template>
           <ion-header>
@@ -94,7 +100,7 @@
                     <fa-icon
                       [icon]="icons.carSide"
                       slot="end"
-                      style="transform: scaleX(2)"
+                      style="transform: scaleX(1.5)"
                     ></fa-icon>
                   </ion-range>
                 </ion-item>
@@ -109,7 +115,7 @@
                     <fa-icon
                       [icon]="icons.carSide"
                       slot="end"
-                      style="transform: scaleY(2)"
+                      style="transform: scaleY(1.5)"
                     ></fa-icon>
                   </ion-range>
                 </ion-item>
@@ -124,7 +130,7 @@
                     <fa-icon
                       [icon]="icons.carSide"
                       slot="end"
-                      style="transform: scaleY(2)"
+                      style="transform: scaleY(1.5)"
                     ></fa-icon>
                   </ion-range>
                 </ion-item>
@@ -139,7 +145,7 @@
                     <fa-icon
                       [icon]="icons.carSide"
                       slot="end"
-                      style="transform: scaleX(2)"
+                      style="transform: scaleX(1.5)"
                     ></fa-icon>
                   </ion-range>
                 </ion-item>
@@ -173,7 +179,7 @@
                     <fa-icon
                       [icon]="icons.circle"
                       slot="end"
-                      style="transform: scale(2)"
+                      style="transform: scale(1.5)"
                     ></fa-icon>
                   </ion-range>
                 </ion-item>
