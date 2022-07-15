@@ -49,11 +49,17 @@ export class HomePage implements OnInit {
     this.configForm.patchValue(this.route.snapshot.queryParams);
   }
 
-  saveCurrentTractor(name: string) {
+  saveCurrentTractor() {
+    const name = prompt('What should we call this tractor?');
+    if (!name) {
+      alert('Tractor name required');
+      return;
+    }
     this.tractorStorageService.saveTractor({
       name,
       config: this.configSnapshot,
     });
+    alert('Tractor saved!');
   }
 
   deleteTractor(name: string) {

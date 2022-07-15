@@ -50,41 +50,9 @@
         </ng-template>
       </ion-modal>
       <ion-button (click)="configForm.reset(defaultConfig)"> Reset </ion-button>
-      <ion-button color="primary" (click)="saveModal.present()">
+      <ion-button color="primary" (click)="saveCurrentTractor()">
         Save
       </ion-button>
-      <ion-modal #saveModal>
-        <ng-template>
-          <ion-header>
-            <ion-toolbar>
-              <ion-buttons slot="end">
-                <ion-button
-                  #saveButton
-                  color="primary"
-                  (click)="saveCurrentTractor(tractorName.value); saveModal.dismiss();"
-                >
-                  Save
-                </ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ion-header>
-          <ion-content>
-            <ion-item>
-              <ion-label position="stacked">Choose a name</ion-label>
-              <ion-input
-                #tractorName
-                placeholder="My Tractor"
-                value="My Tractor"
-              ></ion-input>
-            </ion-item>
-
-            <app-tractor
-              [config]="config$ | async"
-              [animated]="false"
-            ></app-tractor>
-          </ion-content>
-        </ng-template>
-      </ion-modal>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
