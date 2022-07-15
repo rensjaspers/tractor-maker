@@ -3,11 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import {
-  faCar,
   faCarSide,
   faCircleDot,
-  faRulerHorizontal,
-  faRulerVertical,
   faScaleUnbalanced,
   faScaleUnbalancedFlip,
   faSpinner,
