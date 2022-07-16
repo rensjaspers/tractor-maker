@@ -95,10 +95,6 @@ export class Tractor {
     }
   }
 
-  /**
-   *
-   * @param {CanvasRenderingContext2D} ctx
-   */
   draw(ctx: CanvasRenderingContext2D) {
     ctx.save();
 
@@ -121,9 +117,8 @@ export class Tractor {
     this.background.forEach((b) => {
       b.draw(ctx);
     });
-    
-    // Sky is rendered as background via css
 
+    // Sky is rendered as background via css
     ctx.restore();
   }
 }

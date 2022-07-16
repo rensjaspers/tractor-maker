@@ -8,17 +8,19 @@ export class WindTurbine implements BackgroundItem {
   h: number;
   width: number;
   angle: number;
+  rotSpeed: number;
 
   constructor(public x: number) {
     this.width = 100;
-    this.h = 200;
+    this.h = 200 + Math.random() * 30;
 
     this.angle = 0;
+    this.rotSpeed = ROT_SPEED + Math.random() / 4;
   }
 
   next(dt) {
     this.x -= (SPEED * dt) / 1000;
-    this.angle += (ROT_SPEED * dt) / 1000;
+    this.angle += (this.rotSpeed * dt) / 1000;
 
     if (this.angle > 2 * Math.PI) {
       this.angle -= 2 * Math.PI;
