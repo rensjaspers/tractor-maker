@@ -42,6 +42,7 @@ export class HomePage implements OnInit {
       this.configSnapshot = config as TractorConfig;
       this.router.navigate([], {
         queryParams: config,
+        replaceUrl: true,
       });
     })
   );
