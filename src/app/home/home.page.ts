@@ -10,6 +10,7 @@ import {
   faScaleUnbalancedFlip,
   faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
+import { Platform } from '@ionic/angular';
 import { map, startWith, tap } from 'rxjs/operators';
 import { StoredTractor } from '../services/stored-tractor.interface';
 import { TractorStorageService } from '../services/tractor-storage.service';
@@ -58,12 +59,20 @@ export class HomePage implements OnInit {
   trackByTractorId: TrackByFunction<StoredTractor> = (_index, tractor) =>
     tractor.createdAt;
 
+  get isWidescreen() {
+    return this.platform.width() > 500;
+  }
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    public tractorStorageService: TractorStorageService
+    public tractorStorageService: TractorStorageService,
+    public platform: Platform
   ) {
+    
     this.configForm.patchValue(this.defaultConfig);
+
+    
   }
 
   ngOnInit(): void {

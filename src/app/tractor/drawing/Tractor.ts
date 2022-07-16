@@ -1,12 +1,21 @@
 import { TractorConfig } from '../tractor-config';
 import { Body } from './Body';
 import { ExhaustPipe } from './ExhaustPipe';
+import { Shed } from './Shed';
 import { Wheel } from './Wheel';
+
+const BACKGROUND_CHANCE = 0.01;
 
 interface Part {
   draw: (context2d: CanvasRenderingContext2D) => void;
   next: (deltaT: number) => void;
 }
+
+export interface BackgroundItem extends Part {
+  x: number;
+  width: number;
+}
+
 export class Tractor {
   x: number;
   y: number;
@@ -15,6 +24,7 @@ export class Tractor {
   frontWheel: Wheel;
   backWheel: Wheel;
   parts: Part[];
+  background: BackgroundItem[];
 
   constructor(x, y) {
     this.x = x;
@@ -26,6 +36,11 @@ export class Tractor {
     this.backWheel = new Wheel(50, 80);
 
     this.parts = [this.backWheel, this.frontWheel, this.body];
+
+    this.background = [
+      // TODO: get width
+      new Shed(800, 300),
+    ];
   }
 
   // TODO: ensure config from URL does not pass strings to this method
@@ -55,6 +70,17 @@ export class Tractor {
     this.parts.forEach((p) => {
       p.next(dt);
     });
+
+    this.background.forEach((b) => {
+      b.next(dt);
+    });
+
+    this.background = this.background.filter((b) => b.x > -this.x - b.width);
+
+
+    if (this.background.length === 0 && Math.random() > BACKGROUND_CHANCE) {
+      this.background.push(new Shed(800, 100 + Math.round(Math.random() * 400)));
+    }
   }
 
   /**
@@ -74,18 +100,17 @@ export class Tractor {
       p.draw(ctx);
     });
 
-    // Draw floor
+    // Background
     ctx.globalCompositeOperation = 'destination-over';
+    // Draw floor
     ctx.fillStyle = 'brown';
     ctx.fillRect(-this.x, 0, ctx.canvas.width, ctx.canvas.height);
 
-    ctx.fillStyle = 'rgba(0, 0, 255, 0.4)';
-    ctx.fillRect(
-      -this.x,
-      -ctx.canvas.height,
-      ctx.canvas.width,
-      ctx.canvas.height
-    );
+    this.background.forEach((b) => {
+      b.draw(ctx);
+    });
+    
+    // Sky is rendered as background via css
 
     ctx.restore();
   }

@@ -39,7 +39,6 @@
             >
               <ion-thumbnail slot="start">
                 <app-tractor
-                  style="display: flex; align-items: center; height: 100%"
                   [config]="tractor.config"
                   [animated]="false"
                 ></app-tractor>
@@ -71,7 +70,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <as-split>
+  <as-split [direction]="isWideScreen ? 'vertical' : 'horizontal'">
     <as-split-area [size]="70">
       <app-tractor [config]="config$ | async"></app-tractor>
     </as-split-area>

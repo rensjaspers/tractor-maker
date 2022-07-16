@@ -1,4 +1,4 @@
-const SPEED = 100;
+const SPEED = 200;
 
 // const TIRE_RATIO = 0.6; // size of the rim vs tire
 // const BOLT_SIZE = 3;
