@@ -3,6 +3,7 @@ import { Body } from './Body';
 import { ExhaustPipe } from './ExhaustPipe';
 import { Shed } from './Shed';
 import { Wheel } from './Wheel';
+import { WindTurbine } from './WindTurbine';
 
 const BACKGROUND_CHANCE = 0.01;
 
@@ -39,7 +40,7 @@ export class Tractor {
 
     this.background = [
       // TODO: get width
-      new Shed(800, 300),
+      new Shed(800, 300)
     ];
   }
 
@@ -79,7 +80,18 @@ export class Tractor {
 
 
     if (this.background.length === 0 && Math.random() > BACKGROUND_CHANCE) {
-      this.background.push(new Shed(800, 100 + Math.round(Math.random() * 400)));
+      // Pick shed or wind turbine
+      const isShed = Math.random() > 0.4;
+
+      if (isShed) {
+        this.background.push(new Shed(800, 100 + Math.round(Math.random() * 400)));
+      } else {
+        const t1 = new WindTurbine(800);
+        const t2 = new WindTurbine(1000 + Math.random() * 200);
+
+        this.background.push(t1, t2);
+      }
+
     }
   }
 
