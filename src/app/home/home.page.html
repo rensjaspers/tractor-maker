@@ -70,7 +70,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <as-split [direction]="isWideScreen ? 'vertical' : 'horizontal'">
+  <as-split [direction]="isWidescreen ? 'horizontal' : 'vertical'">
     <as-split-area [size]="70">
       <app-tractor [config]="config$ | async"></app-tractor>
     </as-split-area>
