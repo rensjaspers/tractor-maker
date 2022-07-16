@@ -2,13 +2,17 @@
   <ion-toolbar>
     <ion-title> Tractor Maker </ion-title>
     <ion-buttons slot="start">
-      <ion-button (click)="configForm.reset(defaultConfig)">
+      <ion-button (click)="reset()">
         <ion-icon
           name="refresh-outline"
           slot="start"
           style="transform: scaleX(-1)"
         ></ion-icon>
-        <ion-label>Reset</ion-label>
+        <ion-label class="ion-hide-lg-down">Reset</ion-label>
+      </ion-button>
+      <ion-button (click)="share()">
+        <ion-icon name="share-outline" slot="start"></ion-icon>
+        <ion-label class="ion-hide-lg-down">Share</ion-label>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
@@ -17,7 +21,7 @@
         [disabled]="!tractorStorageService.tractors.length"
       >
         <ion-icon slot="start" name="list-circle-outline"></ion-icon>
-        <ion-label>My Tractors</ion-label>
+        <ion-label class="ion-hide-lg-down">My Tractors</ion-label>
       </ion-button>
       <ion-modal #loadModal>
         <ng-template>
@@ -32,6 +36,12 @@
             </ion-toolbar>
           </ion-header>
           <ion-content>
+            <ion-item
+              *ngIf="tractorStorageService.tractors.length===0"
+              lines="none"
+            >
+              <ion-label>No tractors</ion-label>
+            </ion-item>
             <ion-item
               [button]="true"
               *ngFor="let tractor of tractorStorageService.tractors; trackBy: trackByTractorId"
@@ -63,14 +73,17 @@
       <ion-button color="primary" (click)="saveCurrentTractor()">
         <ion-icon slot="start" name="save-outline"></ion-icon>
 
-        <ion-label>Save</ion-label>
+        <ion-label class="ion-hide-lg-down">Save</ion-label>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <as-split [direction]="isWideScreen ? 'vertical' : 'horizontal'">
+<ion-content [fullscreen]="true" [scrollY]="false">
+  <as-split
+    [gutterSize]="24"
+    [direction]="isWidescreen ? 'horizontal' : 'vertical'"
+  >
     <as-split-area [size]="70">
       <app-tractor [config]="config$ | async"></app-tractor>
     </as-split-area>
