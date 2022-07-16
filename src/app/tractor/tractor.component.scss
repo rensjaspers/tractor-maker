@@ -1,3 +1,12 @@
 canvas {
   width: 100%;
 }
+
+:host {
+  background: linear-gradient(0deg, #2e86e696, #d5e3f645);
+
+
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}
