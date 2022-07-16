@@ -70,10 +70,7 @@ export class HomePage implements OnInit {
     public tractorStorageService: TractorStorageService,
     public platform: Platform
   ) {
-    
     this.configForm.patchValue(this.defaultConfig);
-
-    
   }
 
   ngOnInit(): void {
