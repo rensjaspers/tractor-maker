@@ -41,7 +41,7 @@ export class HomePage implements OnInit {
     tap((config) => {
       this.configSnapshot = config as TractorConfig;
       this.router.navigate([], {
-        queryParams: config,
+        queryParams: { config: this.encodeConfig() },
         replaceUrl: true,
       });
     })
@@ -74,7 +74,9 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.configForm.patchValue(this.route.snapshot.queryParams);
+    this.configForm.patchValue(
+      this.decodeConfig(this.route.snapshot.queryParams.config)
+    );
   }
 
   saveCurrentTractor() {
@@ -95,13 +97,19 @@ export class HomePage implements OnInit {
   }
 
   async share() {
+    const url = `${window.location.origin}/#/?config=${this.encodeConfig()}`;
+    if (!navigator.share) {
+      alert('Sharing not available');
+      console.log(url);
+      return;
+    }
     try {
-      await navigator.share({
+      await navigator.share?.({
         title: 'Check out my Tractor!',
-        url: window.location.href,
+        url,
       });
     } catch (e) {
-      alert(e.message);
+      console.log(e);
     }
   }
 
@@ -110,5 +118,18 @@ export class HomePage implements OnInit {
       return;
     }
     this.configForm.reset(this.defaultConfig);
+  }
+
+  private encodeConfig(): string {
+    const configStr = JSON.stringify(this.configForm.value);
+    return btoa(configStr);
+  }
+
+  private decodeConfig(encodedConfig: string): TractorConfig {
+    try {
+      return JSON.parse(atob(encodedConfig)) as TractorConfig;
+    } catch {
+      return this.defaultConfig;
+    }
   }
 }
