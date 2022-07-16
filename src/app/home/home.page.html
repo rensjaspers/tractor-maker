@@ -8,7 +8,7 @@
           slot="start"
           style="transform: scaleX(-1)"
         ></ion-icon>
-        <ion-label>Reset</ion-label>
+        <ion-label class="ion-hide-lg-down">Reset</ion-label>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
@@ -17,7 +17,7 @@
         [disabled]="!tractorStorageService.tractors.length"
       >
         <ion-icon slot="start" name="list-circle-outline"></ion-icon>
-        <ion-label>My Tractors</ion-label>
+        <ion-label class="ion-hide-lg-down">My Tractors</ion-label>
       </ion-button>
       <ion-modal #loadModal>
         <ng-template>
@@ -63,7 +63,7 @@
       <ion-button color="primary" (click)="saveCurrentTractor()">
         <ion-icon slot="start" name="save-outline"></ion-icon>
 
-        <ion-label>Save</ion-label>
+        <ion-label class="ion-hide-lg-down">Save</ion-label>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
