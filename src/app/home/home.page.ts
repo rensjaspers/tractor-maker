@@ -93,4 +93,22 @@ export class HomePage implements OnInit {
   deleteTractor(id: number) {
     this.tractorStorageService.deleteTractor(id);
   }
+
+  async share() {
+    try {
+      await navigator.share({
+        title: 'Check out my Tractor!',
+        url: window.location.href,
+      });
+    } catch (e) {
+      alert(e.message);
+    }
+  }
+
+  reset() {
+    if (!confirm('Reset tractor?')) {
+      return;
+    }
+    this.configForm.reset(this.defaultConfig);
+  }
 }

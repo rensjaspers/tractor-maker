@@ -2,13 +2,17 @@
   <ion-toolbar>
     <ion-title> Tractor Maker </ion-title>
     <ion-buttons slot="start">
-      <ion-button (click)="configForm.reset(defaultConfig)">
+      <ion-button (click)="reset()">
         <ion-icon
           name="refresh-outline"
           slot="start"
           style="transform: scaleX(-1)"
         ></ion-icon>
         <ion-label class="ion-hide-lg-down">Reset</ion-label>
+      </ion-button>
+      <ion-button (click)="share()">
+        <ion-icon name="share-outline" slot="start"></ion-icon>
+        <ion-label class="ion-hide-lg-down">Share</ion-label>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
