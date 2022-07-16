@@ -33,6 +33,12 @@
           </ion-header>
           <ion-content>
             <ion-item
+              *ngIf="tractorStorageService.tractors.length===0"
+              lines="none"
+            >
+              <ion-label>No tractors</ion-label>
+            </ion-item>
+            <ion-item
               [button]="true"
               *ngFor="let tractor of tractorStorageService.tractors; trackBy: trackByTractorId"
               (click)="configForm.patchValue(tractor.config); loadModal.dismiss()"
