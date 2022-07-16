@@ -69,7 +69,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [scrollY]="false">
   <as-split [direction]="isWidescreen ? 'horizontal' : 'vertical'">
     <as-split-area [size]="70">
       <app-tractor [config]="config$ | async"></app-tractor>
